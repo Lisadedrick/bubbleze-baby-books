@@ -1,4 +1,4 @@
-python-docx
-reportlab
-openai
-pandas
+python-docx==0.8.11
+reportlab==4.2.2
+openai>=1.40.0
+pandas==2.2.2
