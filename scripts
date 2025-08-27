@@ -1,0 +1,21 @@
+def load_catalog(path):
+    rows = []
+    try:
+        import pandas as pd
+        if path.lower().endswith((".xlsx", ".xls")):
+            df = pd.read_excel(path)  # first sheet by default
+        else:
+            df = pd.read_csv(path, encoding="utf-8")
+        rows = df.to_dict(orient="records")
+    except Exception as e:
+        print(f"[WARN] Could not read catalog at {path}: {e}")
+        rows = [
+            {"sku":"SKU-001","title":"Baby Sleepy Time Story","subtitle":"Woodland Dreams","niche":"Baby Sleepy Time",
+             "trim_size":"8.5x11","page_count":"40","interior_style":"picture book",
+             "primary_keywords":"baby,bedtime,soothing","secondary_keywords":"woodland,forest,animals",
+             "short_desc":"A soothing 40-page bedtime picture book for infants and toddlers.",
+             "long_desc":"A gentle, rhythmic bedtime story featuring friendly woodland friends and sweet moments to unwind before sleep.",
+             "price_usd":"6.99","cover_filename":"cover_001.png","thumb_filename":"thumb_001.png",
+             "interior_docx":"interior_001.docx","category_hint":"Juvenile Fiction / Bedtime & Dreams"},
+        ]
+    return rows
